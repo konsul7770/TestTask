@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<div style="text-align: center;margin-top: 15%">
+    <label for="str">Enter string and press 'Enter'</label>
+    <input type="text" id="str" maxlength="9"/>
+</div>
+<div style="text-align: center">
+    <label for="source">Source array: </label>
+    <span id="source" style="font-weight: bold;"></span>
+</div>
+<div style="text-align: center">
+    <label for="out">Output array: </label>
+    <span id="out" style="font-weight: bold;"></span>
+</div>
+<script>
+    const sourcearray = ['test','prod','service','dev','test3','prod2','service3','test4','dev5'];
+    document.getElementById('source').innerText = sourcearray.join(',  ');
+    let input = document.getElementById("str");
+
+    input.addEventListener('keydown',(event)=>{
+        if (event.key === 'Enter'){
+            document.getElementById('out').innerText = outArray(input.value,sourcearray).join(',  ');
+        }
+    });
+    function outArray(s,arr) {
+        let out = [];
+        for (let i = 0; i < s.length; i++){
+            if (s[i] === '1'){
+                out.push(arr[i]);
+            }
+        }
+        return out;
+    }
+</script>
+</body>
+</html>
