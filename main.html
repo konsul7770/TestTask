@@ -5,7 +5,11 @@
     <title>Test</title>
 </head>
 <body>
-<div style="text-align: center;margin-top: 15%">
+<div style="text-align: center;margin-top: 15%;">
+    <label for="arEl">Enter array-elements and press 'Enter'</label>
+    <input type="text" id="arEl"/>
+</div>
+<div style="text-align: center;">
     <label for="str">Enter string and press 'Enter'</label>
     <input type="text" id="str" maxlength="9"/>
 </div>
@@ -18,13 +22,26 @@
     <span id="out" style="font-weight: bold;"></span>
 </div>
 <script>
-    const sourcearray = ['test','prod','service','dev','test3','prod2','service3','test4','dev5'];
-    document.getElementById('source').innerText = sourcearray.join(',  ');
+    let sourcearray = [];
+
     let input = document.getElementById("str");
+    let arEl = document.getElementById("arEl");
 
     input.addEventListener('keydown',(event)=>{
         if (event.key === 'Enter'){
-            document.getElementById('out').innerText = outArray(input.value,sourcearray).join(',  ');
+            if (sourcearray.length == 9){
+                document.getElementById('out').innerText = outArray(input.value,sourcearray).join(',  ');
+            }else alert ("Array is not fully entered");
+        }
+    });
+
+    arEl.addEventListener('keydown', (event)=>{
+        if (event.key === 'Enter'){
+            if (sourcearray.length < 9){
+                sourcearray.push(document.getElementById("arEl").value);
+            }
+            document.getElementById("arEl").value = "";
+            document.getElementById("source").innerText = sourcearray.join(", ");
         }
     });
     function outArray(s,arr) {
